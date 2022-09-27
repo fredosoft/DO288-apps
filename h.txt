@@ -1,0 +1,187 @@
+    1  exit
+    2  exit
+    3  dig localhost
+    4  exit
+    5  exit
+    6  ifconfig
+    7  sudo vi /etc/hosts
+    8  exit
+    9  history
+   10  exit
+   11  ll
+   12  exit
+   13  lab configure
+   14  lab-configure
+   15  type git
+   16  pwd
+   17  ls
+   18  git clone https://github.com/fredosoft/DO288-apps
+   19  ls
+   20  cd DO288-apps/
+   21  ls
+   22  git checkout main
+   23  git checkout -b docker-build
+   24  pwd
+   25  ls
+   26  git status
+   27  git push -u origin docker-build
+   28  ls -a
+   29  cd .git
+   30  ls
+   31  vi config 
+   32  ls
+   33  cd ..
+   34  cd ubi-echo/
+   35  ls
+   36  vi Dockerfile 
+   37  source /usr/local/etc/ocp4.config
+   38  more /usr/local/etc/ocp4.config
+   39  oc login -u soqudr
+   40  oc new-project soqudr-docker-build
+   41  oc project
+   42  oc new-app --name echo https://github.com/fredosoft/DO288-apps#docker-build --context-dir ubi-echo
+   43  oc get all
+   44  oc logs -f bc/echo
+   45  oc status
+   46  oc get pod
+   47  oc logs echo-64bd
+   48  oc logs echo-64bd98
+   49  oc logs echo-64bd986fc7-kcl2l 
+   50  oc describe bc echo
+   51  oc describe is echo
+   52  oc describe bc echo
+   53  ls
+   54  vi Dockerfile 
+   55  git commit -a -m"Add a counter"
+   56  git push
+   57  cd ..
+   58  pwd
+   59  ls
+   60  history
+   61  oc new-app --name echo https://github.com/fredosoft/DO288-apps#docker-build --context-dir ubi-echo
+   62  oc start-build echo
+   63  oc get pod
+   64  oc logs echo-5b69df5d84-xxzbq 
+   65  oc describe is echo
+   66  oc delete all -l app=echo
+   67  oc get all
+   68  oc get event
+   69  oc get event -w
+   70  oc get all
+   71  lab docker-build finish
+   72  lab deploy-image start
+   73  lab deploy-image finish
+   74  oc get all
+   75  oc get pod
+   76  lab build-template start
+   77  pwd
+   78  ls
+   79  git checkout main
+   80  ls
+   81  more quotes/get.php 
+   82  ls
+   83  cd ..
+   84  ls
+   85  cd DO288
+   86  ls
+   87  cd labs
+   88  ls
+   89  cd build-template/
+   90  more php-mysql-ephemeral.json 
+   91  env
+   92  env | sort
+   93  source /usr/local/etc/ocp4.config
+   94  env | sort
+   95  source /usr/local/etc/ocp4.config
+   96  cat /usr/local/etc/ocp4.config
+   97  env | grep RHT
+   98  source /usr/local/etc/ocp4.config
+   99  env | grep RHT
+  100  eval $(/usr/local/etc/ocp4.config)
+  101  $(/usr/local/etc/ocp4.config)
+  102  eval /usr/local/etc/ocp4.config
+  103  source /usr/local/etc/ocp4.config
+  104  env | grep RHT
+  105  echo $RHT_OCP4_DEV_USER 
+  106  env --help
+  107  oc login -u ${RHT_OCP4_DEV_USER} -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API} 
+  108  oc get templates -n openshift | grep php
+  109  oc new-project ${RHT_OCP4_DEV_USER}-common
+  110  oc create -f ~/DO288/labs/build-template/php-mysql-ephemeral.json 
+  111  oc new-project ${RHT_OCP4_DEV_USER}-build-template
+  112  oc describe template php-mysql-ephemeral -n ${RHT_OCP4_DEV_USER}-common
+  113  pwd
+  114  ls
+  115  ./create-app.sh 
+  116  oc status
+  117  oc logs -f bc/quotesapi
+  118  oc get pod
+  119  oc get route
+  120  curl -si http://quote-soqudr.apps.eu46a.prod.ole.redhat.com/get.php
+  121  oc describe svc quotesdb
+  122  oc describe pod quotesdb-6b7ffcc649-vtjw2 
+  123  oc describe svc quotesdb
+  124  oc describe pod quotesapi-76b8ddddf8-9hl85 
+  125* 
+  126  oc logs quotesapi-76b8ddddf8-9hl85 
+  127  pwd
+  128  oc cp quote.sql quotesapi-76b8ddddf8-9hl85:/tmp/quote.sql
+  129  oc rsh -t quotesapi-76b8ddddf8-9hl85
+  130  oc rsh -t quotesdb-6b7ffcc649-vtjw2 
+  131  pwd
+  132  ls
+  133  oc get pod quotesdb-6b7ffcc649-vtjw2 
+  134  oc cp quote.sql quotesdb-6b7ffcc649-vtjw2:/tmp/quote.sql
+  135  oc rsh -t quotesdb-6b7ffcc649-vtjw2
+  136  history
+  137  curl -si http://quote-soqudr.apps.eu46a.prod.ole.redhat.com/get.php
+  138  pwd
+  139  ls
+  140  cd
+  141  ls
+  142  oc delete project ${RHT_OCP4_DEV_USER}-build-template
+  143  oc delete project ${RHT_OCP4_DEV_USER}-build-common
+  144  oc delete project ${RHT_OCP4_DEV_USER}-common
+  145  lab build-template finish
+  146  lab source-build start
+  147  history | grep git
+  148  git checkout -b source-build
+  149  pwd
+  150  ls
+  151  cd DO288-apps/
+  152  git checkout -b source-build
+  153  git push -u origin source-build
+  154  history  | grep oc
+  155  oc new-project ${RHT_OCP4_DEV_USER}-source-build
+  156  oc new-app https://github.com/fredosoft/DO288-apps#source-build --context-dir nodejs-helloworld
+  157  oc get pod
+  158  oc logs do288-apps-1-build 
+  159  oc get pod
+  160  oc logs do288-apps-1-build 
+  161  pwd
+  162  type python3
+  163  python3 -m json.tool ./nodejs-helloworld/package.json 
+  164  vi ./nodejs-helloworld/package.json 
+  165  git status
+  166  git commit -a -m"debug package"
+  167  git push
+  168  oc get pod
+  169  oc get bc
+  170  oc start-build do288-apps 
+  171  oc get pod
+  172  oc logs do288-apps-2-build 
+  173  oc get pod
+  174  oc get svc
+  175  oc get route
+  176  oc expose service do288-apps 
+  177  oc get route
+  178  curl -si http://do288-apps-soqudr-source-build.apps.eu46a.prod.ole.redhat.com
+  179  oc new-app -name greet https://github.com/fredosoft/DO288-apps#source-build --context-dir nodejs-helloworld
+  180  oc get pod
+  181  oc new-app --name greet https://github.com/fredosoft/DO288-apps#source-build --context-dir nodejs-helloworld
+  182  oc get pod
+  183  oc expose service greet 
+  184  oc get route
+  185  lab source-build grade
+  186  history
+  187  history > h.txt
